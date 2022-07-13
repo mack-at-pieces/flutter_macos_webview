@@ -9,6 +9,7 @@ import Cocoa
 import FlutterMacOS
 import WebKit
 
+@available(macOS 10.11, *)
 class WebViewController: NSViewController {
     enum PresentationStyle: Int {
         case modal = 0
@@ -74,7 +75,8 @@ class WebViewController: NSViewController {
     @objc private func closeSheet() {
         self.view.window?.close()
     }
-    
+
+    @available(macOS 10.11, *)
     private func setupViews() {
         webview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webview)
@@ -109,7 +111,7 @@ class WebViewController: NSViewController {
             closeButton.isBordered = false
             closeButton.title = sheetCloseButtonTitle
             closeButton.font = NSFont.systemFont(ofSize: 14.0)
-            closeButton.contentTintColor = .systemBlue
+//             closeButton.contentTintColor = .systemBlue
             closeButton.bezelStyle = .rounded
             closeButton.setButtonType(.momentaryChange)
             closeButton.sizeToFit()

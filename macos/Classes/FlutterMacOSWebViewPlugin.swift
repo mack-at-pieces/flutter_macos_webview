@@ -113,21 +113,21 @@ public class FlutterMacOSWebViewPlugin: NSObject, FlutterPlugin {
         webViewCtrl.userAgent = args["userAgent"] as? String
         
         webViewCtrl.loadUrl(url: url)
-                
+
         if (!parentCtrl.presentedViewControllers!.contains(webViewCtrl)) {
             if (presentationStyle == .modal) {
                 parentCtrl.presentAsModalWindow(webViewCtrl)
             } else {
                 parentCtrl.presentAsSheet(webViewCtrl)
             }
-            
+
             NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(close(_:)),
                 name: WebViewController.closeNotification,
                 object: nil
             )
-            
+
             channel.invokeMethod("onOpen", arguments: nil)
             // TODO: window
         }
